@@ -63,43 +63,7 @@
         <button onclick="consultarDados()">Consultar Dados Salvos</button>
     </div>
 
-    <script>
-        // Lista para armazenar os dados salvos
-        let dadosSalvos = [];
-
-        function salvarDados() {
-            let nome = document.getElementById('nome').value;
-            let idade = document.getElementById('idade').value;
-            let salario = document.getElementById('salario').value;
-
-            // Adicionando os dados à lista de dados salvos
-            dadosSalvos.push({ nome: nome, idade: idade, salario: salario });
-
-            // Limpando os campos de entrada após salvar os dados
-            document.getElementById('nome').value = '';
-            document.getElementById('idade').value = '';
-            document.getElementById('salario').value = '';
-
-            // Mensagem de confirmação
-            console.log("Dados salvos com sucesso!");
-        }
-
-        function consultarDados() {
-            let textoDados = document.createElement('textarea');
-            textoDados.setAttribute('readonly', 'true');
-            textoDados.style.width = '100%';
-            textoDados.style.marginTop = '10px';
-
-            // Preenchendo o widget de texto com os dados salvos
-            dadosSalvos.forEach(function (dado) {
-                textoDados.textContent += `Nome: ${dado.nome}, Idade: ${dado.idade}, Salário: ${dado.salario}\n`;
-            });
-
-            // Criando uma nova janela para exibir os dados salvos
-            let janelaConsulta = window.open('', 'Dados Salvos', 'width=400,height=300');
-            janelaConsulta.document.body.appendChild(textoDados);
-        }
-    </script>
+    <script src="script.js"></script>
 </body>
 
 </html>
