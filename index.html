@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro de Dados</title>
+    <style>
+        body {
+            background-color: yellow;
+            font-family: Arial, sans-serif;
+        }
+
+        .container {
+            margin: 20px auto;
+            padding: 20px;
+            width: 300px;
+            border: 1px solid black;
+            border-radius: 5px;
+            background-color: white;
+        }
+
+        input[type="text"] {
+            width: calc(100% - 20px);
+            margin-bottom: 10px;
+            padding: 5px;
+        }
+
+        button {
+            width: calc(100% - 20px);
+            padding: 10px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        textarea {
+            width: calc(100% - 20px);
+            margin-top: 10px;
+            padding: 5px;
+            height: 200px;
+            resize: none;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h2>Cadastro de Dados</h2>
+        <label for="nome">Nome:</label>
+        <input type="text" id="nome"><br>
+        <label for="idade">Idade:</label>
+        <input type="text" id="idade"><br>
+        <label for="salario">Salário:</label>
+        <input type="text" id="salario"><br>
+        <button onclick="salvarDados()">Salvar</button>
+        <button onclick="consultarDados()">Consultar Dados Salvos</button>
+    </div>
+
+    <script>
+        // Lista para armazenar os dados salvos
+        let dadosSalvos = [];
+
+        function salvarDados() {
+            let nome = document.getElementById('nome').value;
+            let idade = document.getElementById('idade').value;
+            let salario = document.getElementById('salario').value;
+
+            // Adicionando os dados à lista de dados salvos
+            dadosSalvos.push({ nome: nome, idade: idade, salario: salario });
+
+            // Limpando os campos de entrada após salvar os dados
+            document.getElementById('nome').value = '';
+            document.getElementById('idade').value = '';
+            document.getElementById('salario').value = '';
+
+            // Mensagem de confirmação
+            console.log("Dados salvos com sucesso!");
+        }
+
+        function consultarDados() {
+            let textoDados = document.createElement('textarea');
+            textoDados.setAttribute('readonly', 'true');
+            textoDados.style.width = '100%';
+            textoDados.style.marginTop = '10px';
+
+            // Preenchendo o widget de texto com os dados salvos
+            dadosSalvos.forEach(function (dado) {
+                textoDados.textContent += `Nome: ${dado.nome}, Idade: ${dado.idade}, Salário: ${dado.salario}\n`;
+            });
+
+            // Criando uma nova janela para exibir os dados salvos
+            let janelaConsulta = window.open('', 'Dados Salvos', 'width=400,height=300');
+            janelaConsulta.document.body.appendChild(textoDados);
+        }
+    </script>
+</body>
+
+</html>
